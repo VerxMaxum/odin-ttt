@@ -20,16 +20,16 @@ button {
     padding: 1rem;
 }
 
-header, footer, main {
+dialog[open], footer, main {
     display: flex;
 }
 
-header {
+dialog[open] {
     padding: 2rem;
     justify-content: space-around;
 }
 
-header > button {
+dialog[open] > button {
 
 }
 
