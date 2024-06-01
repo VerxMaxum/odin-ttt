@@ -1,5 +1,5 @@
 let turn = 0;
-let board = ['', '', '', '', '', '', '', '', ''];
+let board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 let player;
 let currPlayer;
 let winningGames = 0;
@@ -100,7 +100,7 @@ function setFuture(event) {
 
 function removeFuture(event) {
     const button = event.target;
-    button.textContent = "";
+    button.textContent = " ";
 }
 
 function checkWinner() {
@@ -166,7 +166,7 @@ function clearGame() {
         button.addEventListener("mouseleave", removeFuture);
     });
     for(let i = 0; i < 9; i++) {
-        board[i] = "";
+        board[i] = " ";
     }
 
     if(turn % 2 === player.turn)
@@ -182,7 +182,7 @@ function clearGame() {
 function redo() {
     slots.forEach((s) => {
         s.disabled = true;
-        s.textContent = '';
+        s.textContent = ' ';
         s.addEventListener("mouseenter", setFuture);
         s.addEventListener("mouseleave", removeFuture);
     });
@@ -190,7 +190,7 @@ function redo() {
         b.disabled = false;
     });
     for(let i = 0; i < board.length; i++) {
-        board[i] = "";
+        board[i] = " ";
     }
 
     if(turn % 2 === player.turn)
@@ -211,7 +211,7 @@ function redo() {
     oppScore.textContent = "Opponent: 0";
 
     const nameInput = document.querySelector('input[type="text"]');
-    nameInput.value = "";
+    nameInput.value = " ";
 
     dialog2.close();
     dialog1.showModal();
@@ -220,7 +220,7 @@ function redo() {
 function restart() {
     slots.forEach((s) => {
         s.disabled = true;
-        s.textContent = '';
+        s.textContent = ' ';
         s.addEventListener("mouseenter", setFuture);
         s.addEventListener("mouseleave", removeFuture);
     });
@@ -228,7 +228,7 @@ function restart() {
         b.disabled = false;
     });
     for(let i = 0; i < board.length; i++) {
-        board[i] = "";
+        board[i] = " ";
     }
 
     if(turn % 2 === player.turn)
