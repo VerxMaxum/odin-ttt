@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/games');
 :root {
     font-size: 16px;
 }
@@ -11,13 +12,16 @@
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     min-height: 100vh;
     max-height: 100vh;
+    background-color: #006769;
 }
 
 button {
     font-size: 2rem;
     padding: 1rem;
+    cursor: pointer;
 }
 
 dialog[open], footer, main {
@@ -27,10 +31,77 @@ dialog[open], footer, main {
 dialog[open] {
     padding: 2rem;
     justify-content: space-around;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background-color: #006769;
+    justify-content: center;
+    align-items: center;
 }
 
-dialog[open] > button {
+dialog[open] > form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 50%;    
+    background-color: #40A578;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    border-radius: 10px;
+    box-shadow: #1b6b47 0px 4px 12px;
+    border-left: 50px #9DDE8B solid;
+    border-right: 50px #9DDE8B solid;
+    box-sizing: content-box;
+}
 
+dialog[open] > form > input,
+dialog[open] > form > input::placeholder {
+    font-size: 3rem;   
+    font-family: 'Games', sans-serif;
+    width: 70%;
+    outline: none;
+    border: none;
+    background: none;
+    border-bottom: 2px #9DDE8B solid;
+    color: #9DDE8B;
+    transition-duration: 0.5s;
+}
+
+
+dialog[open] > form > input:focus,
+dialog[open] > form > input:focus::placeholder {
+    border-bottom: 2px #1b6b47 solid;
+    color: #1b6b47;
+}
+
+#button-container {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-symbol {
+    border: none;
+    border-radius: 10px;
+    box-shadow: #1b6b47 0px 4px 12px;
+    width: 10%;
+    background-color: #9DDE8B;
+    color: #1b6b47;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.button-symbol:hover {
+    
+    border: none;
+    border-radius: 10px;
+    box-shadow: #9DDE8B 0px 4px 12px;
+    width: 10%;
+    background-color: #1b6b47;
+    color: #9DDE8B;
+    font-weight: bold;
 }
 
 main {
@@ -42,16 +113,91 @@ main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    
     padding: 0;
     width: 25%;
     height: auto;
     column-gap: 0;
+    box-shadow: rgb(10, 80, 33) 0px 8px 20px;
 }
 
 #board > button {
     aspect-ratio: 1/1;
     border-radius: 0;
+    border: none;
+    font-size: 6rem;
+    background-color: #40A578;
+    box-sizing: border-box;
+    color: #E6FF94;
+    transition-duration: 0.5s;
+}
+
+#board > button:hover {
+    aspect-ratio: 1/1;
+    border-radius: 0;
+    border: none;
+    font-size: 6rem;
+    background-color: #E6FF94;
+    box-sizing: border-box;
+    color: #40A578;
+}
+
+#board > button:first-child {
+    border: 5px #9DDE8B solid;
+}
+
+#board > button:nth-child(2) {
+    border-bottom: 5px #9DDE8B solid;
+    border-top: 5px #9DDE8B solid;
+}
+
+#board > button:nth-child(3) {
+    border: 5px #9DDE8B solid;
+}
+
+#board > button:nth-child(4) {
+    border-right: 5px #9DDE8B solid;
+    border-left: 5px #9DDE8B solid;
+}
+
+#board > button:nth-child(6) {
+    border-left: 5px #9DDE8B solid;
+    border-right: 5px #9DDE8B solid;
+}
+
+#board > button:nth-child(7) {
+    border: 5px #9DDE8B solid;
+}
+
+#board > button:nth-child(8) {
+    border-top: 5px #9DDE8B solid;
+    border-bottom: 5px #9DDE8B solid;
+}
+
+#board > button:last-child {
+    border: 5px #9DDE8B solid;
+}
+
+#restart {
+    border: none;
+    border-radius: 10px;
+    background-color: #9DDE8B;
+    border: #1b6b47 2px solid;
+    box-shadow: 0px 8px 8px #448f6d;
+    color: #1b6b47;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+#restart:hover {
+    border: none;
+    border-radius: 10px;
+    background-color: #1b6b47;
+    border: #9DDE8B 2px solid;
+    color: #9DDE8B;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.5s;
 }
 
 footer {

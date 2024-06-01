@@ -19,6 +19,8 @@ function initialize() {
     slots.forEach((button) => {
         button.disabled = true;
         button.addEventListener("click", setSymbol);
+        button.addEventListener("mouseenter", setFuture);
+        button.addEventListener("mouseleave", removeFuture);
     });
     
     restartButton.addEventListener("click", restart);
@@ -78,7 +80,20 @@ function setSymbol(event) {
     else {
         currPlayer = 'X';
     }
+
+    button.removeEventListener("mouseenter", setFuture);
+    button.removeEventListener("mouseleave", removeFuture);
     checkWinner();
+}
+
+function setFuture(event) {
+    const button = event.target;
+    button.textContent = currPlayer;
+}
+
+function removeFuture(event) {
+    const button = event.target;
+    button.textContent = "";
 }
 
 function checkWinner() {
@@ -174,6 +189,10 @@ function restart() {
     turn = 0;
     winningGames = 0;
     console.log(board);
+
+    let nameInput = document.querySelector('input[type="text"]');
+    nameInput.value = "";
+
     dialog.showModal();
 }
 
