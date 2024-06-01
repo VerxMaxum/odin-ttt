@@ -143,12 +143,8 @@ main {
 }
 
 #board > button:hover {
-    aspect-ratio: 1/1;
-    border-radius: 0;
-    border: none;
     font-size: 6rem;
     background-color: #E6FF94;
-    box-sizing: border-box;
     color: #40A578;
 }
 
