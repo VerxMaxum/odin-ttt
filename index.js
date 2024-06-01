@@ -8,10 +8,16 @@ const buttonSymbols = Array.from(document.getElementsByClassName('button-symbol'
 const slots = Array.from(document.getElementsByClassName('slot'));
 const restartButton = document.getElementById('restart');
 
-const dialog = document.querySelector('dialog');
+const dialog1 = document.querySelector('dialog');
+const dialog2 = document.querySelector('body > dialog:last-child');
+
+const selfScore = document.querySelector('#scoreboard > p:first-child');
+const oppScore = document.querySelector('#scoreboard > p:last-child');
+
+const again = document.getElementById('again');
 
 function initialize() {
-    dialog.showModal();
+    dialog1.showModal();
     buttonSymbols.forEach((button) => {
         button.addEventListener("click", startGame);
     });
@@ -24,12 +30,13 @@ function initialize() {
     });
     
     restartButton.addEventListener("click", restart);
+    again.addEventListener("click", redo);
 }
 
 function startGame(event) {
     player = makePlayer(event);
     console.log(player);
-    dialog.close();
+    dialog1.close();
     slots.forEach((button) => {
         button.disabled = false;
     });
@@ -131,12 +138,19 @@ function checkWinner() {
 
     console.log(`Winning games: ${winningGames}`);
 
+    selfScore.textContent = "You: " + player.win;
+    oppScore.textContent = "Oppponent: " + (winningGames - player.win);
+
+    const result = document.querySelector('dialog > div > p');
+
     if(winningGames >= 3 && winningGames - player.win === 3) {
         console.log("You lose");
-        restart();
+        result.textContent = "You lose! >:D";
+        dialog2.showModal();
     } else if(winningGames >= 3 && player.win === 3){
         console.log("You won!");
-        restart();
+        result.textContent = `${player.name}, you won! :D`;
+        dialog2.showModal();
     }
 }
 
@@ -148,6 +162,8 @@ function clearGame() {
     slots.forEach((button) => {
         button.textContent = "";
         button.disabled = false;
+        button.addEventListener("mouseenter", setFuture);
+        button.addEventListener("mouseleave", removeFuture);
     });
     for(let i = 0; i < 9; i++) {
         board[i] = "";
@@ -163,10 +179,50 @@ function clearGame() {
     }
 }
 
+function redo() {
+    slots.forEach((s) => {
+        s.disabled = true;
+        s.textContent = '';
+        s.addEventListener("mouseenter", setFuture);
+        s.addEventListener("mouseleave", removeFuture);
+    });
+    buttonSymbols.forEach((b) => {
+        b.disabled = false;
+    });
+    for(let i = 0; i < board.length; i++) {
+        board[i] = "";
+    }
+
+    if(turn % 2 === player.turn)
+        currPlayer = player.symbol;
+    else if(player.symbol === 'X') {
+        currPlayer = 'O';
+    }
+    else {
+        currPlayer = 'X';
+    }
+
+    currPlayer = null;
+    player = null;
+    turn = 0;
+    winningGames = 0;
+
+    selfScore.textContent = "You: 0";
+    oppScore.textContent = "Opponent: 0";
+
+    const nameInput = document.querySelector('input[type="text"]');
+    nameInput.value = "";
+
+    dialog2.close();
+    dialog1.showModal();
+}
+
 function restart() {
     slots.forEach((s) => {
         s.disabled = true;
         s.textContent = '';
+        s.addEventListener("mouseenter", setFuture);
+        s.addEventListener("mouseleave", removeFuture);
     });
     buttonSymbols.forEach((b) => {
         b.disabled = false;
@@ -190,10 +246,13 @@ function restart() {
     winningGames = 0;
     console.log(board);
 
+    selfScore.textContent = "You: 0";
+    oppScore.textContent = "Opponent: 0";
+
     let nameInput = document.querySelector('input[type="text"]');
     nameInput.value = "";
 
-    dialog.showModal();
+    dialog1.showModal();
 }
 
 initialize();
