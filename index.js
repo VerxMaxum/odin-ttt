@@ -124,13 +124,13 @@ function checkWinner() {
                 player.win++;
                 console.log("You won this round")
                 clearGame();
-            } else if(board[w[0]] !== '') {
+            } else if(board[w[0]] !== ' ') {
                 console.log("Your foe won this round");
                 winningGames++;
                 clearGame();
             }
         }
-        else if(!board.includes('')) {
+        else if(!board.includes(' ')) {
             console.log("It's a tie in this round");
             clearGame();
         }
@@ -160,7 +160,7 @@ function clearGame() {
     turn = 0;
     console.log(turn);
     slots.forEach((button) => {
-        button.textContent = "";
+        button.textContent = " ";
         button.disabled = false;
         button.addEventListener("mouseenter", setFuture);
         button.addEventListener("mouseleave", removeFuture);
@@ -211,7 +211,7 @@ function redo() {
     oppScore.textContent = "Opponent: 0";
 
     const nameInput = document.querySelector('input[type="text"]');
-    nameInput.value = " ";
+    nameInput.value = "";
 
     dialog2.close();
     dialog1.showModal();
